@@ -172,10 +172,10 @@ class Board:
     def jump(self, player, coordStart, coordFin):
         if (player != self.currPlayer):
             print("Not your turn!")
-            return
+            return -1
         elif (not self.isValidJump(player, coordStart, coordFin)):
             print("invalid jump")
-            return
+            return -1
         else:
             # If all of that passes, we can place the current player
             self.boardArray[coordFin[0]][coordFin[1]] = player
