@@ -54,11 +54,35 @@ def testValidJump():
     b.printBoard()
     print()
 
+# Tests that game recognizes when it's over
+def testEndState():
+    print("TESTING DETECT END STATE")
+    b = Board()
+    b.boardArray = [[0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 0],
+                    [0, 0, 2, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0]]
+    b.playerPieces = [ "PLACEHOLDER", {(2, 3)}, {(3, 2)}]
+    b.printBoard()
+    if (b.isGameOver() != 0):
+        print("Error, game should not be over!")
+    
+    b.jump(2, (3, 2), (1, 4))
+    b.printBoard()
+    if (b.isGameOver() != 2):
+        print("Error, game should be over!")
+    print()
+
 def runAll():
     testPrint()
     testValidMove()
     testInvalidMove()
     testInvalidPlayer()
+    testEndState()
 
 def main():
     #testValidJump()

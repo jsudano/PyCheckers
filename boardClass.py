@@ -188,6 +188,8 @@ class Board:
             for x in range(8):
                 line += (str(self.boardArray[y][x]) + " ")
             print(line)
+        print("   ---------------")
+        print()
 
     def getOppositePlayer(self, player):
         if (player == 1):
@@ -200,3 +202,11 @@ class Board:
             self.currPlayer = 2
         else:
             self.currPlayer = 1
+    
+    """ Returns int corresponding to winning player, or 0 if game still in session """
+    def isGameOver(self):
+        if len(self.playerPieces[1]) == 0:
+            return 2
+        if len(self.playerPieces[2]) == 0:
+            return 1
+        return 0

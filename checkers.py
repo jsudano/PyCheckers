@@ -18,7 +18,7 @@ def gameLoop():
         gameBoard.printBoard()
 
         # Prompt for input
-        inp = input("Player{0}, enter a move: \n".format(currPlayer))
+        inp = input("Player {0}, enter a move: \n".format(currPlayer))
         args = parseInput(inp)
         if (args == None):
             print("Invalid input!\n")
@@ -35,13 +35,21 @@ def gameLoop():
             # Loop until CURRPLAYER has no more valid jumps
             while (currPlayer == gameBoard.currPlayer):
                 clearScreen()
-                inp = input("Player{0}, jump again: \n".format(currPlayer))
+                inp = input("Player {0}, jump again: \n".format(currPlayer))
                 args = parseInput(inp)
+                if args == None:
+                    print("Invalid input!\n")
+                    continue
                 res = gameBoard.jump(gameBoard.currPlayer, args[1], args[2])
                 if (res == -1):
                     break # Jump failed
-            currPlayer = gameBoard.currPlayer
-            clearScreen()
+        
+        if (gameBoard.isGameOver() != 0):
+            print("Congratulations Player {0}, you win!".format(gameBoard.isGameOver()))
+            break
+        
+        currPlayer = gameBoard.currPlayer
+        clearScreen()
 
 # Try to get input, return NONE if error
 def parseInput(string):
