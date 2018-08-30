@@ -8,7 +8,7 @@ def main():
     gameLoop()
     
 def gameLoop():
-    os.system('clear')
+    clearScreen()
     gameBoard = Board()
     currPlayer = gameBoard.currPlayer
 
@@ -26,7 +26,7 @@ def gameLoop():
         if (args[0] == "move"):
             gameBoard.move(gameBoard.currPlayer, args[1], args[2])
             currPlayer = gameBoard.currPlayer
-            os.system('clear')
+            clearScreen()
         elif (args[0] == "jump"):
             res = gameBoard.jump(gameBoard.currPlayer, args[1], args[2])
             if (res == -1):
@@ -34,15 +34,14 @@ def gameLoop():
 
             # Loop until CURRPLAYER has no more valid jumps
             while (currPlayer == gameBoard.currPlayer):
-                os.system('clear')
-                gameBoard.printBoard()
+                clearScreen()
                 inp = input("Player{0}, jump again: \n".format(currPlayer))
                 args = parseInput(inp)
                 res = gameBoard.jump(gameBoard.currPlayer, args[1], args[2])
                 if (res == -1):
                     break # Jump failed
             currPlayer = gameBoard.currPlayer
-            os.system('clear')
+            clearScreen()
 
 # Try to get input, return NONE if error
 def parseInput(string):
@@ -65,5 +64,8 @@ def parseInput(string):
         return
 
     return [cmd, (int(tup1[0]), int(tup1[1])), (int(tup2[0]), int(tup2[1]))]
+
+def clearScreen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 if __name__ == "__main__": main()

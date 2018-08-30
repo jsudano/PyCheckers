@@ -2,7 +2,7 @@
 A simple implementation of checkers I did as a coding challenge. Occasionally I change it a bit when I'm bored.
 
 ## Dependencies
-Should currently run on a unix-y system with python3
+Should currently run on any system with python3, but I haven't tested on Windows for a while
 
 ## Instructions
 - run checkers.py to start
