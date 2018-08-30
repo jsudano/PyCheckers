@@ -39,48 +39,30 @@ class Board:
             print("You must jump!")
             return
 
-        # I hate repetitive code like this. If you see this message, 
-        # I didn't have time to clean it up
-        if (player == 1):
-            # Verify valid move
-            if (coordFin[0] < coordStart[0]):
-                print("invalid move")
-            if ((coordFin[1] != coordStart[1] + 1) and (coordFin[1] != coordStart[1] - 1)):
-                print("invalid move")
-            if (self.boardArray[coordFin[0]][coordFin[1]] != 0):
-                print("invalid move")
-            if (self.boardArray[coordStart[0]][coordStart[1]] != player):
-                print("invalid move")
-            else:
-                # If all of that passes, we can place the player
-                self.boardArray[coordFin[0]][coordFin[1]] = player
-                self.boardArray[coordStart[0]][coordStart[1]] = 0
-                # And update their pieces
-                self.playerPieces[player].remove(coordStart)
-                self.playerPieces[player].add(coordFin)
-                self.switchTurn()
-        elif (player == 2):
-            # Verify valid move
-            if (coordFin[0] > coordStart[0]):
-                print("invalid move")
-            elif ((coordFin[1] != coordStart[1] + 1) and (coordFin[1] != coordStart[1] - 1)):
-                print("invalid move")
-            elif (self.boardArray[coordFin[0]][coordFin[1]] != 0):
-                print("invalid move")
-            elif (self.boardArray[coordStart[0]][coordStart[1]] != player):
-                print("invalid move")
-            else:
-                # If all of that passes, we can place the player
-                self.boardArray[coordFin[0]][coordFin[1]] = player
-                self.boardArray[coordStart[0]][coordStart[1]] = 0
-                # And update their pieces
-                self.playerPieces[player].remove(coordStart)
-                self.playerPieces[player].add(coordFin)
-                self.switchTurn()
+        if (self.isValidMove(player, coordStart, coordFin)):
+            # Place the player
+            self.boardArray[coordFin[0]][coordFin[1]] = player
+            self.boardArray[coordStart[0]][coordStart[1]] = 0
+            # Update their pieces
+            self.playerPieces[player].remove(coordStart)
+            self.playerPieces[player].add(coordFin)
+            self.switchTurn()
         else:
-            print("Invalid player number")
-            print("Valid input: 'move [1 or 2] [y] [x]'")
-    
+            print("invalid move")
+
+    """ Returns true if a move is valid, false otherwise """
+    def isValidMove(self, player, coordStart, coordFin):
+        if (player != 1 and player != 2):
+            return False
+        if ((coordFin[1] != coordStart[1] + 1) and (coordFin[1] != coordStart[1] - 1)):
+            return False
+        elif (self.boardArray[coordFin[0]][coordFin[1]] != 0):
+            return False
+        elif (self.boardArray[coordStart[0]][coordStart[1]] != player):
+            return False
+        else:
+            return True
+        
     """
     ==================== JUMP METHODS =================================
     """
@@ -200,7 +182,7 @@ class Board:
     """ Prints the board in its current state """
     def printBoard(self):
         print("   0 1 2 3 4 5 6 7")
-        print("   _______________")
+        print("   ---------------")
         for y in range(8):
             line = str(y) + " |"
             for x in range(8):

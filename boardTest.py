@@ -6,6 +6,7 @@ def testPrint():
     print("TESTING PRINTBOARD") 
     b = Board()
     b.printBoard()
+    print()
 
 # Tests a valid move
 def testValidMove():
@@ -15,6 +16,7 @@ def testValidMove():
     print(b.currPlayer)
     b.move(2, (5, 0), (4, 1))
     b.printBoard()
+    print()
 
 # Tests an invalid move
 def testInvalidMove():
@@ -24,6 +26,7 @@ def testInvalidMove():
     print(b.currPlayer)
     b.move(2, (5, 0), (4, 0))
     b.printBoard()
+    print()
 
 # Tests an invalid move
 def testInvalidPlayer():
@@ -33,6 +36,7 @@ def testInvalidPlayer():
     print(b.currPlayer)
     b.move(1, (5, 0), (4, 0))
     b.printBoard()
+    print()
 
 # Tests a valid jump
 def testValidJump():
@@ -48,6 +52,7 @@ def testValidJump():
     b.switchTurn()
     b.jump(2, (4, 3), (2, 5))
     b.printBoard()
+    print()
 
 def runAll():
     testPrint()
@@ -57,8 +62,8 @@ def runAll():
 
 def main():
     #testValidJump()
-    #runAll()
-    print("01234"[1:-1])
+    runAll()
+    #print("01234"[1:-1])
 
 
 

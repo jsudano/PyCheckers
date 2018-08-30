@@ -3,12 +3,12 @@ import os
 
 def main():
     print("Welcome to checkersLite!")
-    print("Be sure to read instructions in Notes.txt")
+    print("Be sure to read instructions in Instructions.txt")
     input("Press enter to start!")
     gameLoop()
     
 def gameLoop():
-    os.system('cls')
+    os.system('clear')
     gameBoard = Board()
     currPlayer = gameBoard.currPlayer
 
@@ -26,7 +26,7 @@ def gameLoop():
         if (args[0] == "move"):
             gameBoard.move(gameBoard.currPlayer, args[1], args[2])
             currPlayer = gameBoard.currPlayer
-            os.system('cls')
+            os.system('clear')
         elif (args[0] == "jump"):
             res = gameBoard.jump(gameBoard.currPlayer, args[1], args[2])
             if (res == -1):
@@ -34,7 +34,7 @@ def gameLoop():
 
             # Loop until CURRPLAYER has no more valid jumps
             while (currPlayer == gameBoard.currPlayer):
-                os.system('cls')
+                os.system('clear')
                 gameBoard.printBoard()
                 inp = input("Player{0}, jump again: \n".format(currPlayer))
                 args = parseInput(inp)
